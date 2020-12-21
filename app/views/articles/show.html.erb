@@ -1,0 +1,14 @@
+<h1>Articles</h1>
+
+<table>
+  <thead>
+    <td>title</td>
+    <td>topic</td>
+  </thead>
+  <tbody>
+    <td><%= @article.title %></td>
+    <td><%= @article.topic %></td>
+    <td><%= link_to "edit", edit_article_path(@article) %></td>
+    <td><%= link_to "destroy", article_path(@article), method: :delete %></td>
+  </tbody>
+</table>

@@ -1,0 +1,14 @@
+
+Users
+<table>
+  <thead>
+    <td>name</td>
+  </thead>
+  <% @users.each do |user| %>
+  <tbody>
+    <td><%= user.id %></td>
+    <td><%= user.name %></td>
+    <td><%= link_to "Show", user_path(user) %></td>
+    <% end %>
+  </tbody>
+</table>

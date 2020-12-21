@@ -1,0 +1,11 @@
+Edit 
+
+<div class="post_form">
+  <%= form_with model:@article, local:true do |f| %>
+  <p>title</p>
+  <%=  f.text_field :title %>
+  <p>topic</p>
+  <%= f.text_field :topic %>
+  <%= f.submit %>
+  <% end %>
+</div>

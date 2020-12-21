@@ -1,0 +1,29 @@
+<h1>Articles</h1>
+
+<h1>ログインユーザー: <%= @user.name %></h1>
+
+<div class="post_form">
+  <%= form_with model:@article, local:true do |f| %>
+  <p>title</p>
+  <%=  f.text_field :title %>
+  <p>topic</p>
+  <%= f.text_field :topic %>
+  <%= f.submit %>
+  <% end %>
+</div>
+
+<div class="article_index">
+  <% @articles.each do |article| %>
+    <table>
+      <thead>
+        <td>title</td>
+        <td>topic</td>
+      </thead>
+      <tbody>
+        <td><%= article.title %></td>
+        <td><%= article.topic %></td>
+        <td><%= link_to "show", article_path(article) %></td>
+      </tbody>
+    </table>
+  <% end %>
+</div>
