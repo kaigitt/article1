@@ -1,29 +1,90 @@
-<h1>Articles</h1>
 
-<h1>ログインユーザー: <%= @user.name %></h1>
 
-<div class="post_form">
-  <%= form_with model:@article, local:true do |f| %>
-  <p>title</p>
-  <%=  f.text_field :title %>
-  <p>topic</p>
-  <%= f.text_field :topic %>
-  <%= f.submit %>
-  <% end %>
+<div class="container">
+  <div class="row">
+    <div class="col-2">
+      <!--レフトサイドバー-->
+      <nav class="sticky-top">
+        <ul>
+          <li class="nav-item active">
+            <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/users">User</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/articles">Articles</a>
+          </li>
+          <li class="nav-item">
+          <% if user_signed_in? %>
+            <%= link_to("logout", destroy_user_session_path,{method: :delete, class: "nav-link"}) %>
+          <% end %>
+        </ul>
+      </nav>
+      <div class="post_form ">
+        <h3></h3>
+
+      </div>
+    </div>
+    <div class=" col-7 mx-auto">
+      <!--中央-->
+      <div class="border border-secondary sticky-top bg-light"><h1>Home</h1></div>
+      <div class="border border-secondary">
+        <div class="p-2">
+          <form><!--投稿用-->
+          <%= form_with model:@article, local:true do |f| %>
+          <div class="form-group">
+            <label>title</label>
+            <%=  f.text_field :title %>
+          </div>
+          <div class="form-group">
+            <label>topic</label>
+            <%= f.text_field :topic %>
+          </div>
+           <button type="submit" class="btn btn-primary">Submit</button>
+          <% end %>
+        </form>
+       </div>
+      </div>
+      <% @articles.each do |article| %> <!--ariticleのインデックス-->
+      <div class="article_index">
+　      <div class="border border-secondary">
+　         <div>
+　           <%= link_to "/users/#{article.user.id}" do %>
+　             <%= attachment_image_tag article.user, :profile_image, :fill, 40, 40, fallback: "no-user-image.png", size: "40x40" %>
+　           <% end %>
+　           <%= article.user.name%>
+　         </div>
+　        <div>title: <%= article.title %></div>
+　        <div>topic: <%= article.topic %></div>
+　      </div>
+      </div>
+      <% end %>
+    </div>
+    <div class="col-3">
+      <!--右サイドバー-->
+      <div class="sticky-top">
+        <div class="what_happening">
+        <h4>what_happening</h4>
+        <ul class="list-group">
+          <li class="list-group-item">オッズパークで年末を楽しも</li>
+          <li class="list-group-item">千と千尋</li>
+          <li class="list-group-item">村上春樹氏</li>
+          <li class="list-group-item">Porta ac consectetur ac</li>
+          <li class="list-group-item">Vestibulum at eros</li>
+        </ul>
+      </div>
+      <div class="who_to_follow">
+        <h4>Users New</h4>
+        <ul class="list-group">
+          <% @users.each do |user| %>
+            <li class="list-group-item"><%= user.name %>さん</li>
+          <% end %>
+        </ul>
+      </div>
+      </div>
+    </div>
+  </div>
 </div>
 
-<div class="article_index">
-  <% @articles.each do |article| %>
-    <table>
-      <thead>
-        <td>title</td>
-        <td>topic</td>
-      </thead>
-      <tbody>
-        <td><%= article.title %></td>
-        <td><%= article.topic %></td>
-        <td><%= link_to "show", article_path(article) %></td>
-      </tbody>
-    </table>
-  <% end %>
-</div>
+

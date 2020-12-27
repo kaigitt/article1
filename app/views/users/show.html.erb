@@ -1,18 +1,18 @@
-<h1>Show</h1>
+<div >
+  <h1><%= @user.name %>のページ</h1>
+</div>
 
-<p><%= @user.name %></p>
-<p>BrowsingHistory</p>
-<table>
+<div class="browsing_history">
+  <p>閲覧した記事</p>
+  <!--いまから実装-->
+  <table>
   <thead>
     <td>title</td>
     <td>Time</td>
   </thead>
   <% @histories.each do |history| %>
   <tbody>
-    <td><%= history.article.title %></td>
-    <td><%= history.created_at%></td>
   </tbody>
   <% end %>
-</table>
-
-<%= link_to "Back", users_path %>
+  </table>
+</div>

@@ -2,6 +2,7 @@ class ArticlesController < ApplicationController
 
   def index
     @user = User.find(current_user.id)
+    @users = User.all.order(id: "ASC")
     @article = Article.new
     @articles = Article.all
   end

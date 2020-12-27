@@ -1,7 +1,11 @@
-<div class="container">
-  <h1>ようこそ</h1>
-  <a href="/users/sign_in">log in</a>
-  <a href="/users/sign_up">sign up</a>
+<div class="container w-100">
+  <div class="row w-100 center-block">
+    <div class="mt-500 mx-auto">
+    <div><h1>welcome</h1></div>
+    </div>
+    <div class="row button flex-column w-100 ">
+    <%= link_to("Log in", new_user_session_path, {class: "btn btn-info btn-lg btn-block col-md-6 col-md-offset-6 mx-auto"}) %>
+    <%= link_to("Sign Up", new_user_registration_path, {class: "btn btn-success btn-lg btn-block col-md-6 mx-auto"}) %>
+    </div>
+  </div>
 </div>
-
-

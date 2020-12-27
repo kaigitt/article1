@@ -2,13 +2,20 @@
 
 <table>
   <thead>
+    <td></td>
     <td>title</td>
     <td>topic</td>
   </thead>
   <tbody>
+    <td>
+      <%= link_to "/users/#{@article.user_id}" do %>
+        <%= @article.user.name %>
+      <% end %>
+    </td>
     <td><%= @article.title %></td>
     <td><%= @article.topic %></td>
     <td><%= link_to "edit", edit_article_path(@article) %></td>
     <td><%= link_to "destroy", article_path(@article), method: :delete %></td>
   </tbody>
 </table>
+
